@@ -1,0 +1,159 @@
+# docker-compose.yml
+
+
+
+version: '3.8'
+
+services:
+  # --- ИНФРАСТРУКТУРА ---
+
+  # 1. PostgreSQL с поддержкой векторов
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: agent_db
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5430:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # 2. RabbitMQ - брокер сообщений для связи воркеров и Celery
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: agent_rabbitmq
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
+    ports:
+      - "5672:5672"   # Порт связи
+      - "15672:15672" # Админка (логин/пароль из .env)
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # 3. Redis - кэш для aiogram и результат-бэкенд для Celery
+  redis:
+    image: redis:7-alpine
+    container_name: agent_redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  # --- МИКРОСЕРВИСЫ ---
+
+  # 4. Локальный STT сервис (Whisper)
+  stt-service:
+    build:
+      context: ./stt_service
+    container_name: agent_stt
+    restart: always
+    volumes:
+      - whisper_models:/root/.cache/huggingface # Кэш моделей Whisper
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # --- ПРИЛОЖЕНИЕ (РАБОЧИЕ УЗЛЫ) ---
+
+  # 5. Сервис миграций (Alembic) - запускается, обновляет БД и выключается
+  migrations:
+    build:
+      context: ./app
+    container_name: agent_migrations
+    env_file: .env
+    depends_on:
+      db:
+        condition: service_healthy
+    command: alembic upgrade head
+
+  # 6. Telegram Bot (Интерфейс)
+  tg-bot:
+    build:
+      context: ./app
+    container_name: agent_tg_bot
+    restart: always
+    env_file: .env
+    depends_on:
+      db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      migrations:
+        condition: service_completed_successfully
+    command: python -m tg_bot.main
+
+  # 7. AI Worker (Мозг - LangGraph)
+  ai-worker:
+    build:
+      context: ./app
+    container_name: agent_ai_worker
+    restart: always
+    env_file: .env
+    volumes:
+      - hf_cache:/root/.cache/huggingface # Кэш для локальных эмбеддингов rubert-tiny2
+    depends_on:
+      db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      stt-service:
+        condition: service_healthy
+    command: python -m ai_worker.main
+
+  # 8. Scheduler (Планировщик напоминаний)
+  scheduler-worker:
+    build:
+      context: ./app
+    container_name: agent_scheduler
+    restart: always
+    env_file: .env
+    depends_on:
+      db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    command: celery -A scheduler.celery_app worker --loglevel=info
+
+  # 9. Celery Beat (Триггер для проверки времени напоминаний)
+  scheduler-beat:
+    build:
+      context: ./app
+    container_name: agent_scheduler_beat
+    restart: always
+    env_file: .env
+    depends_on:
+      - scheduler-worker
+    command: celery -A scheduler.celery_app beat --loglevel=info
+
+volumes:
+  postgres_data:
+  rabbitmq_data:
+  redis_data:
+  whisper_models:
+  hf_cache:
