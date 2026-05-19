@@ -84,10 +84,10 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    # Явно указываем PYTHONPATH, чтобы python видел модули
-    environment:
-      - PYTHONPATH=/app
-    command: python init_db.py
+    # Запускаем через модуль, чтобы Python правильно разрешил пути
+    command: python -m app.init_db
+
+
   # 6. Telegram Bot (Интерфейс)
   tg-bot:
     build:
@@ -102,9 +102,9 @@ services:
         condition: service_healthy
       redis:
         condition: service_started
-      # migrations:
-      #   condition: service_completed_successfully
-    command: python -m tg_bot.main
+      migrations:
+        condition: service_completed_successfully
+    command: python -m app.tg_bot.main
 
   # 7. AI Worker (Мозг - LangGraph)
   ai-worker:
@@ -122,7 +122,7 @@ services:
         condition: service_healthy
       stt-service:
         condition: service_healthy
-    command: python -m ai_worker.main
+    command: python -m app.ai_worker.main
 
   # 8. Scheduler (Планировщик напоминаний)
   scheduler-worker:
@@ -138,7 +138,7 @@ services:
         condition: service_healthy
       redis:
         condition: service_started
-    command: celery -A scheduler.celery_app worker --loglevel=info
+    command: celery -A app.scheduler.celery_app worker --loglevel=info
 
   # 9. Celery Beat (Триггер для проверки времени напоминаний)
   scheduler-beat:
@@ -149,7 +149,7 @@ services:
     env_file: .env
     depends_on:
       - scheduler-worker
-    command: celery -A scheduler.celery_app beat --loglevel=info
+    command: celery -A app.scheduler.celery_app beat --loglevel=info
 
 volumes:
   postgres_data:
