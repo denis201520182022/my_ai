@@ -1,53 +1,73 @@
-| 2026-05-19 22:34:14.709 UTC [16320] FATAL:  password authentication failed for user "django"
-agent_db              | 2026-05-19 22:34:14.709 UTC [16320] DETAIL:  Role "django" does not exist.
-agent_db              |         Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
-agent_db              | 2026-05-19 22:34:14.960 UTC [16329] FATAL:  password authentication failed for user "confluence"
-agent_db              | 2026-05-19 22:34:14.960 UTC [16329] DETAIL:  Role "confluence" does not exist.
-agent_db              |         Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
-agent_db              | 2026-05-19 22:34:15.153 UTC [16330] FATAL:  password authentication failed for user "confluence"
-agent_db              | 2026-05-19 22:34:15.153 UTC [16330] DETAIL:  Role "confluence" does not exist.
-agent_db              |         Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
-agent_db              | 2026-05-19 22:34:15.405 UTC [16331] FATAL:  password authentication failed for user "chatwoot"
-agent_db              | 2026-05-19 22:34:15.405 UTC [16331] DETAIL:  Role "chatwoot" does not exist.
-agent_db              |         Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
-agent_db              | 2026-05-19 22:34:15.603 UTC [16332] FATAL:  password authentication failed for user "chatwoot"
-agent_db              | 2026-05-19 22:34:15.603 UTC [16332] DETAIL:  Role "chatwoot" does not exist.
-agent_db              |         Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
-agent_db              | 2026-05-19 22:34:15.846 UTC [16333] FATAL:  password authentication failed for user "analytics"
-agent_db              | 2026-05-19 22:34:15.846 UTC [16333] DETAIL:  Role "analytics" does not exist.
-agent_db              |         Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
-agent_db              | 2026-05-19 22:34:16.057 UTC [16334] FATAL:  password authentication failed for user "analytics"
-agent_db              | 2026-05-19 22:34:16.057 UTC [16334] DETAIL:  Role "analytics" does not exist.
-agent_db              |         Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
-agent_db              | 2026-05-19 22:34:16.320 UTC [16335] FATAL:  password authentication failed for user "admin"
-agent_db              | 2026-05-19 22:34:16.320 UTC [16335] DETAIL:  Role "admin" does not exist.
-agent_db              |         Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
-agent_db              | 2026-05-19 22:34:16.515 UTC [16336] FATAL:  password authentication failed for user "admin"
-agent_db              | 2026-05-19 22:34:16.515 UTC [16336] DETAIL:  Role "admin" does not exist.
-agent_db              |         Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
-agent_db              | 2026-05-19 22:38:00.008 UTC [16050] LOG:  could not receive data from client: Connection reset by peer
-agent_db              | 2026-05-19 22:38:00.008 UTC [16404] LOG:  could not receive data from client: Connection reset by peer
-agent_db              | 2026-05-19 22:38:00.008 UTC [16050] LOG:  unexpected EOF on client connection with an open transaction
-agent_db              | 2026-05-19 22:38:00.008 UTC [16404] LOG:  unexpected EOF on client connection with an open transaction
-agent_db              | 2026-05-19 22:41:17.273 UTC [16600] LOG:  could not receive data from client: Connection reset by peer
-agent_db              | 2026-05-19 22:41:17.273 UTC [16600] LOG:  unexpected EOF on client connection with an open transaction
-agent_db              | 2026-05-19 22:41:17.273 UTC [16797] LOG:  could not receive data from client: Connection reset by peer
-agent_db              | 2026-05-19 22:41:17.273 UTC [16797] LOG:  unexpected EOF on client connection with an open transaction
-agent_db              | 2026-05-19 22:41:17.273 UTC [14847] LOG:  could not receive data from client: Connection reset by peer
-agent_db              | 2026-05-19 22:41:17.273 UTC [14847] LOG:  unexpected EOF on client connection with an open transaction
-agent_ai_worker       | 2026-05-19 22:41:51,153 [INFO] ai_agent: AI Worker is starting...
-agent_ai_worker       | 2026-05-19 22:41:51,162 [INFO] ai_agent: AI Worker is ready. Listening queue: tg_to_ai_tasks
-agent_scheduler_beat  | [2026-05-19 22:42:00,011: INFO/MainProcess] Scheduler: Sending due task check-reminders-every-minute (app.scheduler.tasks.check_reminders)
-agent_scheduler       | [2026-05-19 22:42:00,028: INFO/MainProcess] Task app.scheduler.tasks.check_reminders[c1cc175a-e2ae-4639-b94f-859d67a77b48] received
-agent_scheduler       | [2026-05-19 22:42:00,133: INFO/ForkPoolWorker-4] Task app.scheduler.tasks.check_reminders[c1cc175a-e2ae-4639-b94f-859d67a77b48] succeeded in 0.10287049598991871s: None
-agent_stt             | INFO:     127.0.0.1:36226 - "GET /health HTTP/1.1" 200 OK
-agent_ai_worker       | 2026-05-19 22:42:18,375 [INFO] ai_agent: AI Worker: Thinking for user 1975808643...
-agent_ai_worker       | 2026-05-19 22:42:19,082 [INFO] openai._base_client: Retrying request to /chat/completions in 0.472967 seconds
-agent_tg_bot          | 2026-05-19 22:42:19,190 [INFO] aiogram.event: Update id=763770068 is handled. Duration 1007 ms by bot id=8289148299
-agent_ai_worker       | 2026-05-19 22:42:19,568 [INFO] openai._base_client: Retrying request to /chat/completions in 0.869063 seconds
-agent_ai_worker       | 2026-05-19 22:42:20,440 [INFO] openai._base_client: Retrying request to /chat/completions in 1.804394 seconds
-agent_ai_worker       | 2026-05-19 22:42:22,252 [ERROR] ai_agent: Error during AI processing: Connection error.
-agent_stt             | INFO:     127.0.0.1:49842 - "GET /health HTTP/1.1" 200 OK
-agent_scheduler_beat  | [2026-05-19 22:43:00,000: INFO/MainProcess] Scheduler: Sending due task check-reminders-every-minute (app.scheduler.tasks.check_reminders)
-agent_scheduler       | [2026-05-19 22:43:00,004: INFO/MainProcess] Task app.scheduler.tasks.check_reminders[4a9cf4c2-031c-4f6d-abe6-6fe3ccf01497] received
-agent_scheduler       | [2026-05-19 22:43:00,061: INFO/ForkPoolWorker-4] Task app.scheduler.tasks.check_reminders[4a9cf4c2-031c-4f6d-abe6-6fe3ccf01497] succeeded in 0.0547554079676047s: None
+   | 1:M 19 May 2026 21:57:00.053 * Background saving started by pid 21
+agent_redis           | 21:C 19 May 2026 21:57:00.057 * DB saved on disk
+agent_redis           | 21:C 19 May 2026 21:57:00.058 * Fork CoW for RDB: current 0 MB, peak 0 MB, average 0 MB
+agent_redis           | 1:M 19 May 2026 21:57:00.154 * Background saving terminated with success
+agent_redis           | 1:M 19 May 2026 22:48:00.006 * 100 changes in 300 seconds. Saving...
+agent_redis           | 1:M 19 May 2026 22:48:00.006 * Background saving started by pid 22
+agent_redis           | 22:C 19 May 2026 22:48:00.010 * DB saved on disk
+agent_redis           | 22:C 19 May 2026 22:48:00.011 * Fork CoW for RDB: current 0 MB, peak 0 MB, average 0 MB
+agent_redis           | 1:M 19 May 2026 22:48:00.108 * Background saving terminated with success
+agent_scheduler       | /usr/local/lib/python3.11/site-packages/celery/platforms.py:829: SecurityWarning: You're running the worker with superuser privileges: this is
+agent_scheduler       | absolutely not recommended!
+agent_scheduler       | 
+agent_scheduler       | Please specify a different user using the --uid option.
+agent_scheduler       | 
+agent_scheduler       | User information: uid=0 euid=0 gid=0 egid=0
+agent_scheduler       | 
+agent_scheduler       |   warnings.warn(SecurityWarning(ROOT_DISCOURAGED.format(
+agent_scheduler       |  
+agent_scheduler       |  -------------- celery@eb40e78b2cd1 v5.4.0 (opalescent)
+agent_scheduler       | --- ***** ----- 
+agent_scheduler       | -- ******* ---- Linux-5.15.0-138-generic-x86_64-with-glibc2.41 2026-05-19 22:51:54
+agent_scheduler       | - *** --- * --- 
+agent_scheduler       | - ** ---------- [config]
+agent_scheduler       | - ** ---------- .> app:         agent_scheduler:0x7f6db4ebff90
+agent_scheduler       | - ** ---------- .> transport:   amqp://user:**@rabbitmq:5672//
+agent_scheduler       | - ** ---------- .> results:     redis://redis:6379/0
+agent_scheduler       | - *** --- * --- .> concurrency: 6 (prefork)
+agent_scheduler       | -- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+agent_scheduler       | --- ***** ----- 
+agent_scheduler       |  -------------- [queues]
+agent_scheduler       |                 .> celery           exchange=celery(direct) key=celery
+agent_scheduler       |                 
+agent_scheduler       | 
+agent_scheduler       | [tasks]
+agent_scheduler       |   . app.scheduler.tasks.add_reminder_to_db
+agent_scheduler       |   . app.scheduler.tasks.check_reminders
+agent_scheduler       | 
+agent_scheduler       | [2026-05-19 22:51:55,357: WARNING/MainProcess] /usr/local/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:508: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+agent_scheduler       | whether broker connection retries are made during startup in Celery 6.0 and above.
+agent_scheduler       | If you wish to retain the existing behavior for retrying connections on startup,
+agent_scheduler       | you should set broker_connection_retry_on_startup to True.
+agent_scheduler       |   warnings.warn(
+agent_scheduler       | 
+agent_scheduler       | [2026-05-19 22:51:55,365: INFO/MainProcess] Connected to amqp://user:**@rabbitmq:5672//
+agent_scheduler       | [2026-05-19 22:51:55,366: WARNING/MainProcess] /usr/local/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:508: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+agent_scheduler       | whether broker connection retries are made during startup in Celery 6.0 and above.
+agent_scheduler       | If you wish to retain the existing behavior for retrying connections on startup,
+agent_scheduler       | you should set broker_connection_retry_on_startup to True.
+agent_scheduler       |   warnings.warn(
+agent_scheduler       | 
+agent_scheduler       | [2026-05-19 22:51:55,370: INFO/MainProcess] mingle: searching for neighbors
+agent_scheduler       | [2026-05-19 22:51:56,398: INFO/MainProcess] mingle: all alone
+agent_scheduler       | [2026-05-19 22:51:56,461: INFO/MainProcess] celery@eb40e78b2cd1 ready.
+agent_tg_bot          | 2026-05-19 22:51:59,030 [INFO] ai_agent: Starting Telegram Bot interface...
+agent_tg_bot          | 2026-05-19 22:51:59,071 [INFO] ai_agent: Telegram-бот запущен через прокси: http://zabota:zabota2000@38.180.203.212:8787
+agent_tg_bot          | 2026-05-19 22:51:59,086 [INFO] ai_agent: Successfully connected to RabbitMQ
+agent_tg_bot          | 2026-05-19 22:51:59,089 [INFO] ai_agent: RabbitMQ queues initialized
+agent_tg_bot          | 2026-05-19 22:51:59,090 [INFO] ai_agent: Bot is ready and polling...
+agent_tg_bot          | 2026-05-19 22:51:59,090 [INFO] aiogram.dispatcher: Start polling
+agent_tg_bot          | 2026-05-19 22:51:59,112 [INFO] ai_agent: Consumer started. Waiting for messages in ai_to_tg_answers...
+agent_scheduler_beat  | [2026-05-19 22:52:00,009: INFO/MainProcess] Scheduler: Sending due task check-reminders-every-minute (app.scheduler.tasks.check_reminders)
+agent_scheduler       | [2026-05-19 22:52:00,025: INFO/MainProcess] Task app.scheduler.tasks.check_reminders[d5941897-c284-40a4-9306-1025fbde829d] received
+agent_tg_bot          | 2026-05-19 22:52:00,027 [INFO] aiogram.dispatcher: Run polling for bot @ai_assistent_denis_bot id=8289148299 - 'AI Denis'
+agent_scheduler       | [2026-05-19 22:52:00,142: INFO/ForkPoolWorker-4] Task app.scheduler.tasks.check_reminders[d5941897-c284-40a4-9306-1025fbde829d] succeeded in 0.11538073205156252s: None
+agent_ai_worker       | 2026-05-19 22:52:05,759 [INFO] ai_agent: AI Worker is starting...
+agent_ai_worker       | 2026-05-19 22:52:05,769 [INFO] ai_agent: AI Worker is ready. Listening queue: tg_to_ai_tasks
+agent_ai_worker       | 2026-05-19 22:52:05,895 [INFO] ai_agent: AI Worker: Thinking for user 1975808643...
+agent_tg_bot          | 2026-05-19 22:52:06,007 [INFO] aiogram.event: Update id=763770070 is handled. Duration 1031 ms by bot id=8289148299
+agent_ai_worker       | 2026-05-19 22:52:06,491 [INFO] openai._base_client: Retrying request to /chat/completions in 0.417048 seconds
+agent_ai_worker       | 2026-05-19 22:52:06,916 [INFO] openai._base_client: Retrying request to /chat/completions in 0.786112 seconds
+agent_ai_worker       | 2026-05-19 22:52:07,705 [INFO] openai._base_client: Retrying request to /chat/completions in 1.959897 seconds
+agent_ai_worker       | 2026-05-19 22:52:09,673 [ERROR] ai_agent: Error during AI processing: Connection error.
+agent_stt             | INFO:     127.0.0.1:33118 - "GET /health HTTP/1.1" 200 OK
