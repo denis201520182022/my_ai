@@ -1,55 +1,53 @@
-eduler       | RuntimeError: Event loop is closed
-agent_scheduler       | [2026-05-19 22:20:00,008: ERROR/ForkPoolWorker-4] Error in check_reminders task: Task <Task pending name='Task-21' coro=<_check_reminders_async() running at /app/scheduler/tasks.py:26> cb=[_run_until_complete_cb() at /usr/local/lib/python3.11/asyncio/base_events.py:181]> got Future <Future pending cb=[Protocol._on_waiter_completed()]> attached to a different loop
-agent_scheduler       | [2026-05-19 22:20:00,009: INFO/ForkPoolWorker-4] Task app.scheduler.tasks.check_reminders[7c627a98-85f6-4b38-baa2-0dae84699dda] succeeded in 0.004516588000115007s: None
-agent_stt             | INFO:     127.0.0.1:52230 - "GET /health HTTP/1.1" 200 OK
-agent_stt             | INFO:     127.0.0.1:53804 - "GET /health HTTP/1.1" 200 OK
-agent_scheduler_beat  | [2026-05-19 22:21:00,000: INFO/MainProcess] Scheduler: Sending due task check-reminders-every-minute (app.scheduler.tasks.check_reminders)
-agent_scheduler       | [2026-05-19 22:21:00,005: INFO/MainProcess] Task app.scheduler.tasks.check_reminders[00d5d9b3-14a0-40e6-9031-f2cdbc27d278] received
-agent_scheduler       | [2026-05-19 22:21:00,075: INFO/ForkPoolWorker-4] Task app.scheduler.tasks.check_reminders[00d5d9b3-14a0-40e6-9031-f2cdbc27d278] succeeded in 0.06701628700830042s: None
-agent_stt             | INFO:     127.0.0.1:37648 - "GET /health HTTP/1.1" 200 OK
-agent_stt             | INFO:     127.0.0.1:54288 - "GET /health HTTP/1.1" 200 OK
-agent_scheduler_beat  | [2026-05-19 22:22:00,000: INFO/MainProcess] Scheduler: Sending due task check-reminders-every-minute (app.scheduler.tasks.check_reminders)
-agent_scheduler       | [2026-05-19 22:22:00,004: INFO/MainProcess] Task app.scheduler.tasks.check_reminders[7bc5d30a-bfb7-4cc0-b414-432d4480304a] received
-agent_scheduler       | [2026-05-19 22:22:00,010: ERROR/ForkPoolWorker-4] Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7fc8dfee6b60>>
-agent_scheduler       | Traceback (most recent call last):
-agent_scheduler       |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 374, in _close_connection
-agent_scheduler       |     self._dialect.do_terminate(connection)
-agent_scheduler       |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1100, in do_terminate
-agent_scheduler       |     dbapi_connection.terminate()
-agent_scheduler       |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 879, in terminate
-agent_scheduler       |     self.await_(self._connection.close(timeout=2))
-agent_scheduler       |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
-agent_scheduler       |     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
-agent_scheduler       |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-agent_scheduler       |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
-agent_scheduler       |     value = await result
-agent_scheduler       |             ^^^^^^^^^^^^
-agent_scheduler       |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connection.py", line 1467, in close
-agent_scheduler       |     await self._protocol.close(timeout)
-agent_scheduler       |   File "asyncpg/protocol/protocol.pyx", line 626, in close
-agent_scheduler       |   File "asyncpg/protocol/protocol.pyx", line 659, in asyncpg.protocol.protocol.BaseProtocol._request_cancel
-agent_scheduler       |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connection.py", line 1611, in _cancel_current_command
-agent_scheduler       |     self._cancellations.add(self._loop.create_task(self._cancel(waiter)))
-agent_scheduler       |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-agent_scheduler       |   File "/usr/local/lib/python3.11/asyncio/base_events.py", line 435, in create_task
-agent_scheduler       |     self._check_closed()
-agent_scheduler       |   File "/usr/local/lib/python3.11/asyncio/base_events.py", line 520, in _check_closed
-agent_scheduler       |     raise RuntimeError('Event loop is closed')
-agent_scheduler       | RuntimeError: Event loop is closed
-agent_scheduler       | [2026-05-19 22:22:00,013: ERROR/ForkPoolWorker-4] Error in check_reminders task: Task <Task pending name='Task-29' coro=<_check_reminders_async() running at /app/scheduler/tasks.py:26> cb=[_run_until_complete_cb() at /usr/local/lib/python3.11/asyncio/base_events.py:181]> got Future <Future pending cb=[Protocol._on_waiter_completed()]> attached to a different loop
-agent_scheduler       | [2026-05-19 22:22:00,014: INFO/ForkPoolWorker-4] Task app.scheduler.tasks.check_reminders[7bc5d30a-bfb7-4cc0-b414-432d4480304a] succeeded in 0.008390915056224912s: None
-agent_stt             | INFO:     127.0.0.1:35136 - "GET /health HTTP/1.1" 200 OK
-agent_stt             | INFO:     127.0.0.1:47206 - "GET /health HTTP/1.1" 200 OK
-agent_scheduler_beat  | [2026-05-19 22:23:00,002: INFO/MainProcess] Scheduler: Sending due task check-reminders-every-minute (app.scheduler.tasks.check_reminders)
-agent_scheduler       | [2026-05-19 22:23:00,005: INFO/MainProcess] Task app.scheduler.tasks.check_reminders[a2c2b5af-2196-4d99-9305-4329cde5aa5c] received
-agent_scheduler       | [2026-05-19 22:23:00,055: INFO/ForkPoolWorker-4] Task app.scheduler.tasks.check_reminders[a2c2b5af-2196-4d99-9305-4329cde5aa5c] succeeded in 0.04857524501858279s: None
-agent_stt             | INFO:     127.0.0.1:54572 - "GET /health HTTP/1.1" 200 OK
-agent_ai_worker       | 2026-05-19 22:23:25,325 [INFO] ai_agent: AI Worker: Thinking for user 1975808643...
-agent_tg_bot          | 2026-05-19 22:23:26,263 [INFO] aiogram.event: Update id=763770067 is handled. Duration 979 ms by bot id=8289148299
-agent_ai_worker       | 2026-05-19 22:23:27,395 [INFO] ai_agent: Tool: Searching internet for query: 'погода в Ставрополе на 20 мая 2026 года'
-agent_ai_worker       | 2026-05-19 22:23:28,153 [INFO] primp: response: https://duckduckgo.com/ 200
-agent_ai_worker       | 2026-05-19 22:23:28,952 [INFO] primp: response: https://links.duckduckgo.com/d.js?q=%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0+%D0%B2+%D0%A1%D1%82%D0%B0%D0%B2%D1%80%D0%BE%D0%BF%D0%BE%D0%BB%D0%B5+%D0%BD%D0%B0+20+%D0%BC%D0%B0%D1%8F+2026+%D0%B3%D0%BE%D0%B4%D0%B0&kl=ru-ru&l=ru-ru&p=&s=0&df=y&vqd=4-44942850287726985817131639682681056142&bing_market=ru-RU&ex=-1 202
-agent_ai_worker       | 2026-05-19 22:23:28,964 [ERROR] ai_agent: Error in internet_search tool: https://links.duckduckgo.com/d.js?q=%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0+%D0%B2+%D0%A1%D1%82%D0%B0%D0%B2%D1%80%D0%BE%D0%BF%D0%BE%D0%BB%D0%B5+%D0%BD%D0%B0+20+%D0%BC%D0%B0%D1%8F+2026+%D0%B3%D0%BE%D0%B4%D0%B0&kl=ru-ru&l=ru-ru&p=&s=0&df=y&vqd=4-44942850287726985817131639682681056142&bing_market=ru-RU&ex=-1 202 Ratelimit
-agent_ai_worker       | 2026-05-19 22:23:31,063 [INFO] ai_agent: AI Worker: Success response sent to 1975808643
-agent_tg_bot          | 2026-05-19 22:23:31,346 [INFO] ai_agent: Successfully sent AI response to chat_id: 1975808643
-agent_stt             | INFO:     127.0.0.1:51072 - "GET /health HTTP/1.1" 200 OK
+| 2026-05-19 22:34:14.709 UTC [16320] FATAL:  password authentication failed for user "django"
+agent_db              | 2026-05-19 22:34:14.709 UTC [16320] DETAIL:  Role "django" does not exist.
+agent_db              |         Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
+agent_db              | 2026-05-19 22:34:14.960 UTC [16329] FATAL:  password authentication failed for user "confluence"
+agent_db              | 2026-05-19 22:34:14.960 UTC [16329] DETAIL:  Role "confluence" does not exist.
+agent_db              |         Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
+agent_db              | 2026-05-19 22:34:15.153 UTC [16330] FATAL:  password authentication failed for user "confluence"
+agent_db              | 2026-05-19 22:34:15.153 UTC [16330] DETAIL:  Role "confluence" does not exist.
+agent_db              |         Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
+agent_db              | 2026-05-19 22:34:15.405 UTC [16331] FATAL:  password authentication failed for user "chatwoot"
+agent_db              | 2026-05-19 22:34:15.405 UTC [16331] DETAIL:  Role "chatwoot" does not exist.
+agent_db              |         Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
+agent_db              | 2026-05-19 22:34:15.603 UTC [16332] FATAL:  password authentication failed for user "chatwoot"
+agent_db              | 2026-05-19 22:34:15.603 UTC [16332] DETAIL:  Role "chatwoot" does not exist.
+agent_db              |         Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
+agent_db              | 2026-05-19 22:34:15.846 UTC [16333] FATAL:  password authentication failed for user "analytics"
+agent_db              | 2026-05-19 22:34:15.846 UTC [16333] DETAIL:  Role "analytics" does not exist.
+agent_db              |         Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
+agent_db              | 2026-05-19 22:34:16.057 UTC [16334] FATAL:  password authentication failed for user "analytics"
+agent_db              | 2026-05-19 22:34:16.057 UTC [16334] DETAIL:  Role "analytics" does not exist.
+agent_db              |         Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
+agent_db              | 2026-05-19 22:34:16.320 UTC [16335] FATAL:  password authentication failed for user "admin"
+agent_db              | 2026-05-19 22:34:16.320 UTC [16335] DETAIL:  Role "admin" does not exist.
+agent_db              |         Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
+agent_db              | 2026-05-19 22:34:16.515 UTC [16336] FATAL:  password authentication failed for user "admin"
+agent_db              | 2026-05-19 22:34:16.515 UTC [16336] DETAIL:  Role "admin" does not exist.
+agent_db              |         Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
+agent_db              | 2026-05-19 22:38:00.008 UTC [16050] LOG:  could not receive data from client: Connection reset by peer
+agent_db              | 2026-05-19 22:38:00.008 UTC [16404] LOG:  could not receive data from client: Connection reset by peer
+agent_db              | 2026-05-19 22:38:00.008 UTC [16050] LOG:  unexpected EOF on client connection with an open transaction
+agent_db              | 2026-05-19 22:38:00.008 UTC [16404] LOG:  unexpected EOF on client connection with an open transaction
+agent_db              | 2026-05-19 22:41:17.273 UTC [16600] LOG:  could not receive data from client: Connection reset by peer
+agent_db              | 2026-05-19 22:41:17.273 UTC [16600] LOG:  unexpected EOF on client connection with an open transaction
+agent_db              | 2026-05-19 22:41:17.273 UTC [16797] LOG:  could not receive data from client: Connection reset by peer
+agent_db              | 2026-05-19 22:41:17.273 UTC [16797] LOG:  unexpected EOF on client connection with an open transaction
+agent_db              | 2026-05-19 22:41:17.273 UTC [14847] LOG:  could not receive data from client: Connection reset by peer
+agent_db              | 2026-05-19 22:41:17.273 UTC [14847] LOG:  unexpected EOF on client connection with an open transaction
+agent_ai_worker       | 2026-05-19 22:41:51,153 [INFO] ai_agent: AI Worker is starting...
+agent_ai_worker       | 2026-05-19 22:41:51,162 [INFO] ai_agent: AI Worker is ready. Listening queue: tg_to_ai_tasks
+agent_scheduler_beat  | [2026-05-19 22:42:00,011: INFO/MainProcess] Scheduler: Sending due task check-reminders-every-minute (app.scheduler.tasks.check_reminders)
+agent_scheduler       | [2026-05-19 22:42:00,028: INFO/MainProcess] Task app.scheduler.tasks.check_reminders[c1cc175a-e2ae-4639-b94f-859d67a77b48] received
+agent_scheduler       | [2026-05-19 22:42:00,133: INFO/ForkPoolWorker-4] Task app.scheduler.tasks.check_reminders[c1cc175a-e2ae-4639-b94f-859d67a77b48] succeeded in 0.10287049598991871s: None
+agent_stt             | INFO:     127.0.0.1:36226 - "GET /health HTTP/1.1" 200 OK
+agent_ai_worker       | 2026-05-19 22:42:18,375 [INFO] ai_agent: AI Worker: Thinking for user 1975808643...
+agent_ai_worker       | 2026-05-19 22:42:19,082 [INFO] openai._base_client: Retrying request to /chat/completions in 0.472967 seconds
+agent_tg_bot          | 2026-05-19 22:42:19,190 [INFO] aiogram.event: Update id=763770068 is handled. Duration 1007 ms by bot id=8289148299
+agent_ai_worker       | 2026-05-19 22:42:19,568 [INFO] openai._base_client: Retrying request to /chat/completions in 0.869063 seconds
+agent_ai_worker       | 2026-05-19 22:42:20,440 [INFO] openai._base_client: Retrying request to /chat/completions in 1.804394 seconds
+agent_ai_worker       | 2026-05-19 22:42:22,252 [ERROR] ai_agent: Error during AI processing: Connection error.
+agent_stt             | INFO:     127.0.0.1:49842 - "GET /health HTTP/1.1" 200 OK
+agent_scheduler_beat  | [2026-05-19 22:43:00,000: INFO/MainProcess] Scheduler: Sending due task check-reminders-every-minute (app.scheduler.tasks.check_reminders)
+agent_scheduler       | [2026-05-19 22:43:00,004: INFO/MainProcess] Task app.scheduler.tasks.check_reminders[4a9cf4c2-031c-4f6d-abe6-6fe3ccf01497] received
+agent_scheduler       | [2026-05-19 22:43:00,061: INFO/ForkPoolWorker-4] Task app.scheduler.tasks.check_reminders[4a9cf4c2-031c-4f6d-abe6-6fe3ccf01497] succeeded in 0.0547554079676047s: None

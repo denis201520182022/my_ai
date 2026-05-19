@@ -6,10 +6,6 @@ from langchain.tools import tool
 from app.core.config import settings
 from app.core.logging import logger
 
-# Временно отключаем прокси, чтобы проверить, не в нем ли проблема с Ratelimit
-# os.environ["HTTP_PROXY"] = settings.PROXY_URL
-# os.environ["HTTPS_PROXY"] = settings.PROXY_URL
-
 def get_search_tool():
     """
     Фабрика для создания инструмента поиска.
