@@ -6,10 +6,9 @@ from langchain.tools import tool
 from app.core.config import settings
 from app.core.logging import logger
 
-# Устанавливаем прокси для системного окружения, 
-# так как библиотека duckduckgo_search под капотом использует стандартные переменные
-os.environ["HTTP_PROXY"] = settings.PROXY_URL
-os.environ["HTTPS_PROXY"] = settings.PROXY_URL
+# Временно отключаем прокси, чтобы проверить, не в нем ли проблема с Ratelimit
+# os.environ["HTTP_PROXY"] = settings.PROXY_URL
+# os.environ["HTTPS_PROXY"] = settings.PROXY_URL
 
 def get_search_tool():
     """
