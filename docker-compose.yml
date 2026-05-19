@@ -64,20 +64,18 @@ services:
     container_name: agent_stt
     restart: always
     volumes:
-      - whisper_models:/root/.cache/huggingface # Кэш моделей Whisper
+      - whisper_models:/root/.cache/huggingface
     deploy:
       resources:
         limits:
           memory: 2G
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      interval: 30s # Увеличиваем интервал
+      timeout: 20s
+      retries: 10   # Даем 10 попыток (итого 5 минут на скачивание модели)
+      start_period: 60s # Не проверять первые 60 секунд
 
-  # --- ПРИЛОЖЕНИЕ (РАБОЧИЕ УЗЛЫ) ---
-
-  # 5. Сервис миграций (Alembic) - запускается, обновляет БД и выключается
   migrations:
     build:
       context: ./app
@@ -86,7 +84,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    command: alembic upgrade head
+    # Заменяем alembic на наш скрипт инициализации
+    command: python init_db.py
 
   # 6. Telegram Bot (Интерфейс)
   tg-bot:
