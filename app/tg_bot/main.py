@@ -1,9 +1,7 @@
 # app/tg_bot/main.py
 import asyncio
-import logging
 from aiogram import Bot, Dispatcher
 from aiogram.client.session.aiohttp import AiohttpSession
-from aiohttp_socks import ProxyConnector
 
 from app.core.config import settings
 from app.core.logging import setup_logging, logger
@@ -17,13 +15,17 @@ async def main():
     setup_logging()
     logger.info("Starting Telegram Bot interface...")
 
-    # 2. Настройка прокси через aiohttp-socks (Твое требование в ТЗ)
-    # Используем данные из .env для создания коннектора
-    connector = ProxyConnector.from_url(settings.PROXY_URL)
-    session = AiohttpSession(connector=connector)
+    # 2. Настройка прокси
+    # Передаем proxy напрямую в AiohttpSession. 
+    # Если URL начинается с socks5:// или socks4://, aiogram автоматически применит aiohttp-socks.
+    session = None
+    if settings.PROXY_URL:
+        session = AiohttpSession(proxy=settings.PROXY_URL)
+        logger.info(f"Telegram-бот запущен через прокси: {settings.PROXY_URL}")
+    else:
+        logger.info("Telegram-бот запущен без прокси")
 
     # 3. Инициализация Бота и Диспетчера
-    # parse_mode="HTML" или "MarkdownV2" для красивых ответов от ИИ
     bot = Bot(token=settings.BOT_TOKEN, session=session)
     dp = Dispatcher()
 
@@ -37,7 +39,6 @@ async def main():
     await init_queues()
 
     # 7. Запуск фоновой задачи: слушаем очередь ответов от ИИ
-    # Мы передаем объект bot, чтобы консьюмер мог отправлять сообщения
     asyncio.create_task(start_consumer(bot))
 
     # 8. Запуск бесконечного цикла получения обновлений (Polling)
