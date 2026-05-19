@@ -1,14 +1,17 @@
 import asyncio
 from sqlalchemy.ext.asyncio import create_async_engine
-from app.database.models import Base
-from app.core.config import settings
-from app.core.logging import logger
+# УБРАЛИ "app." из импортов, так как файл уже внутри этой папки
+from database.models import Base 
+from core.config import settings
+from core.logging import logger
 
 async def init_models():
+    # Создаем движок
     engine = create_async_engine(settings.DATABASE_URL, echo=True)
     async with engine.begin() as conn:
-        # Это создаст все таблицы и расширение pgvector, если их нет
+        # Сначала создаем расширение (нужны права суперпользователя в БД)
         await conn.execute("CREATE EXTENSION IF NOT EXISTS vector")
+        # Создаем таблицы
         await conn.run_sync(Base.metadata.create_all)
     logger.info("Database tables created successfully")
     await engine.dispose()

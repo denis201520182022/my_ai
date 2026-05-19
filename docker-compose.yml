@@ -69,12 +69,12 @@ services:
       resources:
         limits:
           memory: 2G
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 30s # Увеличиваем интервал
-      timeout: 20s
-      retries: 10   # Даем 10 попыток (итого 5 минут на скачивание модели)
-      start_period: 60s # Не проверять первые 60 секунд
+    # healthcheck:
+    #   test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+    #   interval: 30s # Увеличиваем интервал
+    #   timeout: 20s
+    #   retries: 10   # Даем 10 попыток (итого 5 минут на скачивание модели)
+    #   start_period: 60s # Не проверять первые 60 секунд
 
   migrations:
     build:
@@ -84,9 +84,10 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    # Заменяем alembic на наш скрипт инициализации
+    # Явно указываем PYTHONPATH, чтобы python видел модули
+    environment:
+      - PYTHONPATH=/app
     command: python init_db.py
-
   # 6. Telegram Bot (Интерфейс)
   tg-bot:
     build:
@@ -101,8 +102,8 @@ services:
         condition: service_healthy
       redis:
         condition: service_started
-      migrations:
-        condition: service_completed_successfully
+      # migrations:
+      #   condition: service_completed_successfully
     command: python -m tg_bot.main
 
   # 7. AI Worker (Мозг - LangGraph)
