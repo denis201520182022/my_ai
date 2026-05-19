@@ -37,7 +37,7 @@ async def send_to_ai_worker(payload: dict):
         await channel.default_exchange.publish(
             aio_pika.Message(
                 body=json.dumps(payload).encode(),
-                delivery_mode=aio_pika.DeliveryMode.Persistent
+                delivery_mode=aio_pika.DeliveryMode.PERSISTENT  # Исправлено на PERSISTENT
             ),
             routing_key=QUEUE_TG_TO_AI
         )
