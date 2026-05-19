@@ -1,73 +1,47 @@
-   | 1:M 19 May 2026 21:57:00.053 * Background saving started by pid 21
-agent_redis           | 21:C 19 May 2026 21:57:00.057 * DB saved on disk
-agent_redis           | 21:C 19 May 2026 21:57:00.058 * Fork CoW for RDB: current 0 MB, peak 0 MB, average 0 MB
-agent_redis           | 1:M 19 May 2026 21:57:00.154 * Background saving terminated with success
-agent_redis           | 1:M 19 May 2026 22:48:00.006 * 100 changes in 300 seconds. Saving...
-agent_redis           | 1:M 19 May 2026 22:48:00.006 * Background saving started by pid 22
-agent_redis           | 22:C 19 May 2026 22:48:00.010 * DB saved on disk
-agent_redis           | 22:C 19 May 2026 22:48:00.011 * Fork CoW for RDB: current 0 MB, peak 0 MB, average 0 MB
-agent_redis           | 1:M 19 May 2026 22:48:00.108 * Background saving terminated with success
-agent_scheduler       | /usr/local/lib/python3.11/site-packages/celery/platforms.py:829: SecurityWarning: You're running the worker with superuser privileges: this is
-agent_scheduler       | absolutely not recommended!
-agent_scheduler       | 
-agent_scheduler       | Please specify a different user using the --uid option.
-agent_scheduler       | 
-agent_scheduler       | User information: uid=0 euid=0 gid=0 egid=0
-agent_scheduler       | 
-agent_scheduler       |   warnings.warn(SecurityWarning(ROOT_DISCOURAGED.format(
-agent_scheduler       |  
-agent_scheduler       |  -------------- celery@eb40e78b2cd1 v5.4.0 (opalescent)
-agent_scheduler       | --- ***** ----- 
-agent_scheduler       | -- ******* ---- Linux-5.15.0-138-generic-x86_64-with-glibc2.41 2026-05-19 22:51:54
-agent_scheduler       | - *** --- * --- 
-agent_scheduler       | - ** ---------- [config]
-agent_scheduler       | - ** ---------- .> app:         agent_scheduler:0x7f6db4ebff90
-agent_scheduler       | - ** ---------- .> transport:   amqp://user:**@rabbitmq:5672//
-agent_scheduler       | - ** ---------- .> results:     redis://redis:6379/0
-agent_scheduler       | - *** --- * --- .> concurrency: 6 (prefork)
-agent_scheduler       | -- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
-agent_scheduler       | --- ***** ----- 
-agent_scheduler       |  -------------- [queues]
-agent_scheduler       |                 .> celery           exchange=celery(direct) key=celery
-agent_scheduler       |                 
-agent_scheduler       | 
-agent_scheduler       | [tasks]
-agent_scheduler       |   . app.scheduler.tasks.add_reminder_to_db
-agent_scheduler       |   . app.scheduler.tasks.check_reminders
-agent_scheduler       | 
-agent_scheduler       | [2026-05-19 22:51:55,357: WARNING/MainProcess] /usr/local/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:508: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
-agent_scheduler       | whether broker connection retries are made during startup in Celery 6.0 and above.
-agent_scheduler       | If you wish to retain the existing behavior for retrying connections on startup,
-agent_scheduler       | you should set broker_connection_retry_on_startup to True.
-agent_scheduler       |   warnings.warn(
-agent_scheduler       | 
-agent_scheduler       | [2026-05-19 22:51:55,365: INFO/MainProcess] Connected to amqp://user:**@rabbitmq:5672//
-agent_scheduler       | [2026-05-19 22:51:55,366: WARNING/MainProcess] /usr/local/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:508: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
-agent_scheduler       | whether broker connection retries are made during startup in Celery 6.0 and above.
-agent_scheduler       | If you wish to retain the existing behavior for retrying connections on startup,
-agent_scheduler       | you should set broker_connection_retry_on_startup to True.
-agent_scheduler       |   warnings.warn(
-agent_scheduler       | 
-agent_scheduler       | [2026-05-19 22:51:55,370: INFO/MainProcess] mingle: searching for neighbors
-agent_scheduler       | [2026-05-19 22:51:56,398: INFO/MainProcess] mingle: all alone
-agent_scheduler       | [2026-05-19 22:51:56,461: INFO/MainProcess] celery@eb40e78b2cd1 ready.
-agent_tg_bot          | 2026-05-19 22:51:59,030 [INFO] ai_agent: Starting Telegram Bot interface...
-agent_tg_bot          | 2026-05-19 22:51:59,071 [INFO] ai_agent: Telegram-бот запущен через прокси: http://zabota:zabota2000@38.180.203.212:8787
-agent_tg_bot          | 2026-05-19 22:51:59,086 [INFO] ai_agent: Successfully connected to RabbitMQ
-agent_tg_bot          | 2026-05-19 22:51:59,089 [INFO] ai_agent: RabbitMQ queues initialized
-agent_tg_bot          | 2026-05-19 22:51:59,090 [INFO] ai_agent: Bot is ready and polling...
-agent_tg_bot          | 2026-05-19 22:51:59,090 [INFO] aiogram.dispatcher: Start polling
-agent_tg_bot          | 2026-05-19 22:51:59,112 [INFO] ai_agent: Consumer started. Waiting for messages in ai_to_tg_answers...
-agent_scheduler_beat  | [2026-05-19 22:52:00,009: INFO/MainProcess] Scheduler: Sending due task check-reminders-every-minute (app.scheduler.tasks.check_reminders)
-agent_scheduler       | [2026-05-19 22:52:00,025: INFO/MainProcess] Task app.scheduler.tasks.check_reminders[d5941897-c284-40a4-9306-1025fbde829d] received
-agent_tg_bot          | 2026-05-19 22:52:00,027 [INFO] aiogram.dispatcher: Run polling for bot @ai_assistent_denis_bot id=8289148299 - 'AI Denis'
-agent_scheduler       | [2026-05-19 22:52:00,142: INFO/ForkPoolWorker-4] Task app.scheduler.tasks.check_reminders[d5941897-c284-40a4-9306-1025fbde829d] succeeded in 0.11538073205156252s: None
-agent_ai_worker       | 2026-05-19 22:52:05,759 [INFO] ai_agent: AI Worker is starting...
-agent_ai_worker       | 2026-05-19 22:52:05,769 [INFO] ai_agent: AI Worker is ready. Listening queue: tg_to_ai_tasks
-agent_ai_worker       | 2026-05-19 22:52:05,895 [INFO] ai_agent: AI Worker: Thinking for user 1975808643...
-agent_tg_bot          | 2026-05-19 22:52:06,007 [INFO] aiogram.event: Update id=763770070 is handled. Duration 1031 ms by bot id=8289148299
-agent_ai_worker       | 2026-05-19 22:52:06,491 [INFO] openai._base_client: Retrying request to /chat/completions in 0.417048 seconds
-agent_ai_worker       | 2026-05-19 22:52:06,916 [INFO] openai._base_client: Retrying request to /chat/completions in 0.786112 seconds
-agent_ai_worker       | 2026-05-19 22:52:07,705 [INFO] openai._base_client: Retrying request to /chat/completions in 1.959897 seconds
-agent_ai_worker       | 2026-05-19 22:52:09,673 [ERROR] ai_agent: Error during AI processing: Connection error.
-agent_stt             | INFO:     127.0.0.1:33118 - "GET /health HTTP/1.1" 200 OK
+2026-05-19 22:54:57,948 [INFO] ai_agent: AI Worker is starting...
+agent_ai_worker       | 2026-05-19 22:54:57,957 [INFO] ai_agent: AI Worker is ready. Listening queue: tg_to_ai_tasks
+agent_scheduler_beat  | [2026-05-19 22:55:00,013: INFO/MainProcess] Scheduler: Sending due task check-reminders-every-minute (app.scheduler.tasks.check_reminders)
+agent_scheduler       | [2026-05-19 22:55:00,028: INFO/MainProcess] Task app.scheduler.tasks.check_reminders[4b0b6318-0173-476f-b3bb-6ebac919a139] received
+agent_scheduler       | [2026-05-19 22:55:00,123: INFO/ForkPoolWorker-4] Task app.scheduler.tasks.check_reminders[4b0b6318-0173-476f-b3bb-6ebac919a139] succeeded in 0.0938583150273189s: None
+agent_ai_worker       | 2026-05-19 22:55:08,988 [INFO] ai_agent: AI Worker: Thinking for user 1975808643...
+agent_tg_bot          | 2026-05-19 22:55:09,833 [INFO] aiogram.event: Update id=763770071 is handled. Duration 1020 ms by bot id=8289148299
+agent_ai_worker       | 2026-05-19 22:55:11,981 [INFO] ai_agent: AI Worker: Success response sent to 1975808643
+agent_tg_bot          | 2026-05-19 22:55:12,286 [INFO] ai_agent: Successfully sent AI response to chat_id: 1975808643
+agent_stt             | INFO:     127.0.0.1:42138 - "GET /health HTTP/1.1" 200 OK
+agent_ai_worker       | 2026-05-19 22:55:22,405 [INFO] ai_agent: AI Worker: Thinking for user 1975808643...
+agent_tg_bot          | 2026-05-19 22:55:22,597 [INFO] aiogram.event: Update id=763770072 is handled. Duration 324 ms by bot id=8289148299
+agent_ai_worker       | 2026-05-19 22:55:24,882 [INFO] ai_agent: Tool: Searching internet (no-proxy) for query: 'погода в Ставрополе на 20 мая 2026'
+agent_ai_worker       | 2026-05-19 22:55:24,906 [WARNING] primp.impersonate: Impersonate 'safari_ios_17.2' does not exist, using 'random'
+agent_ai_worker       | 2026-05-19 22:55:25,809 [INFO] primp: response: https://duckduckgo.com/ 202
+agent_ai_worker       | 2026-05-19 22:55:25,810 [ERROR] ai_agent: Error in internet_search tool: https://duckduckgo.com/ 202 Ratelimit
+agent_ai_worker       | 2026-05-19 22:55:29,042 [INFO] ai_agent: AI Worker: Success response sent to 1975808643
+agent_tg_bot          | 2026-05-19 22:55:29,331 [INFO] ai_agent: Successfully sent AI response to chat_id: 1975808643
+agent_stt             | INFO:     127.0.0.1:51226 - "GET /health HTTP/1.1" 200 OK
+agent_ai_worker       | 2026-05-19 22:55:58,564 [INFO] ai_agent: AI Worker: Thinking for user 1975808643...
+agent_tg_bot          | 2026-05-19 22:55:59,386 [INFO] aiogram.event: Update id=763770073 is handled. Duration 974 ms by bot id=8289148299
+agent_scheduler_beat  | [2026-05-19 22:56:00,000: INFO/MainProcess] Scheduler: Sending due task check-reminders-every-minute (app.scheduler.tasks.check_reminders)
+agent_scheduler       | [2026-05-19 22:56:00,007: INFO/MainProcess] Task app.scheduler.tasks.check_reminders[85983582-0092-4716-a1e8-6ce6cb72141e] received
+agent_scheduler       | [2026-05-19 22:56:00,101: INFO/ForkPoolWorker-4] Task app.scheduler.tasks.check_reminders[85983582-0092-4716-a1e8-6ce6cb72141e] succeeded in 0.08984585799043998s: None
+agent_ai_worker       | 2026-05-19 22:56:00,838 [INFO] ai_agent: Added new knowledge for user 1975808643
+agent_ai_worker       | 2026-05-19 22:56:00,881 [INFO] ai_agent: Tool: Information saved to memory for user 1975808643
+agent_ai_worker       | 2026-05-19 22:56:03,313 [INFO] ai_agent: AI Worker: Success response sent to 1975808643
+agent_tg_bot          | 2026-05-19 22:56:03,678 [INFO] ai_agent: Successfully sent AI response to chat_id: 1975808643
+agent_stt             | INFO:     127.0.0.1:58966 - "GET /health HTTP/1.1" 200 OK
+agent_ai_worker       | 2026-05-19 22:56:27,563 [INFO] ai_agent: AI Worker: Thinking for user 1975808643...
+agent_tg_bot          | 2026-05-19 22:56:28,418 [INFO] aiogram.event: Update id=763770074 is handled. Duration 1019 ms by bot id=8289148299
+agent_ai_worker       | 2026-05-19 22:56:29,695 [INFO] ai_agent: Tool: Reminder set for user 1975808643 at 2026-05-20T10:00:00
+agent_scheduler       | [2026-05-19 22:56:29,696: INFO/MainProcess] Task app.scheduler.tasks.add_reminder_to_db[50e7bee6-1c6f-4b59-a69c-a4f95f2244bd] received
+agent_scheduler       | [2026-05-19 22:56:29,754: INFO/ForkPoolWorker-4] Added reminder for user 1975808643 at 2026-05-20T10:00:00
+agent_scheduler       | [2026-05-19 22:56:29,757: INFO/ForkPoolWorker-4] Task app.scheduler.tasks.add_reminder_to_db[50e7bee6-1c6f-4b59-a69c-a4f95f2244bd] succeeded in 0.05974427901674062s: None
+agent_ai_worker       | 2026-05-19 22:56:31,582 [INFO] ai_agent: AI Worker: Success response sent to 1975808643
+agent_tg_bot          | 2026-05-19 22:56:31,862 [INFO] ai_agent: Successfully sent AI response to chat_id: 1975808643
+agent_stt             | INFO:     127.0.0.1:39792 - "GET /health HTTP/1.1" 200 OK
+agent_db              | 2026-05-19 22:56:47.365 UTC [27] LOG:  checkpoint starting: time
+agent_db              | 2026-05-19 22:56:50.585 UTC [27] LOG:  checkpoint complete: wrote 35 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=3.212 s, sync=0.002 s, total=3.221 s; sync files=26, longest=0.002 s, average=0.001 s; distance=11 kB, estimate=11 kB; lsn=0/1A8E7C0, redo lsn=0/1A8E788
+agent_scheduler_beat  | [2026-05-19 22:57:00,000: INFO/MainProcess] Scheduler: Sending due task check-reminders-every-minute (app.scheduler.tasks.check_reminders)
+agent_scheduler       | [2026-05-19 22:57:00,003: INFO/MainProcess] Task app.scheduler.tasks.check_reminders[e1eed7b6-1237-4f56-8895-6732a9cfb474] received
+agent_scheduler       | [2026-05-19 22:57:00,064: INFO/ForkPoolWorker-4] Task app.scheduler.tasks.check_reminders[e1eed7b6-1237-4f56-8895-6732a9cfb474] succeeded in 0.059274377999827266s: None
+agent_ai_worker       | 2026-05-19 22:57:00,210 [INFO] ai_agent: AI Worker: Thinking for user 1975808643...
+agent_tg_bot          | 2026-05-19 22:57:01,047 [INFO] aiogram.event: Update id=763770075 is handled. Duration 1023 ms by bot id=8289148299
+agent_ai_worker       | 2026-05-19 22:57:02,210 [INFO] ai_agent: AI Worker: Success response sent to 1975808643
+agent_tg_bot          | 2026-05-19 22:57:02,501 [INFO] ai_agent: Successfully sent AI response to chat_id: 1975808643

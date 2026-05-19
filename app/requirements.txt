@@ -16,7 +16,7 @@ langgraph==0.1.15
 langfuse==2.39.2
 langchain-openai==0.1.17
 langchain-google-genai==1.0.7
-duckduckgo-search==6.2.4
+duckduckgo-search
 
 # --- Локальные Эмбеддинги (RAG) ---
 sentence-transformers==3.0.1
